@@ -145,7 +145,7 @@ export class Display extends React.Component<DisplayProps, State> {
   }
 
   renderAndroid() {
-    const { size, fixSize, fixValue, fontHeight, ready } = this.state
+    const { size } = this.state
     const { value, height, style } = this.props
 
     return (
@@ -157,20 +157,25 @@ export class Display extends React.Component<DisplayProps, State> {
           {value}
         </Text>
         <Text
+          numberOfLines={1}
+          ellipsizeMode="head"
+          textBreakStrategy="simple"
           style={[
             // ready ? styles.displayText : styles.hiddenText,
             styles.displayText,
             style,
             {
-              fontSize: fixSize,
-              height,
-              top: (height - fontHeight) / 2,
+              alignSelf: 'stretch',
+              paddingRight: 5,
+              fontSize: 30,
+              height: height,
+              lineHeight: height,
               // @ts-ignore
-              color: ready ? style.color : 'transparent'
+              color: style.color
             }
           ]}
         >
-          {fixValue}
+          {value}
         </Text>
       </View>
     )
